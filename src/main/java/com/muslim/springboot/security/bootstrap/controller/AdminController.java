@@ -34,17 +34,6 @@ public class AdminController {
         return "admin";
     }
 
-//    @GetMapping
-//    public String getUsers(Model model) {
-//        model.addAttribute("users", userService.index());
-//        return "admin";
-//    }
-
- //   @GetMapping("/new")
- //   public String newUser(Model model) {
- //       model.addAttribute("user", new User());
- //       return "new";
- //   }
 
     @PostMapping("/new")
     public String createUser(@ModelAttribute("user") User user, @RequestParam (value = "nameRoles", required = false) String roles)  {
