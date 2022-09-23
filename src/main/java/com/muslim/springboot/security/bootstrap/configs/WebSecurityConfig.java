@@ -32,8 +32,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/admin").hasRole("ADMIN")
-                .antMatchers("/api/user").hasAnyRole("ADMIN","USER")
+                .antMatchers("/api/admin").permitAll()
+                .antMatchers("/api/user").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/user/**").hasAnyRole("ADMIN","USER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
@@ -46,20 +46,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login")
                 .permitAll();
     }
-
-    //// аутентификация inMemory
-    //@Bean
-    //@Override
-    //public UserDetailsService userDetailsService() {
-    //    UserDetails user =
-    //            User.withDefaultPasswordEncoder()
-    //                    .username("user")
-    //                    .password("user")
-    //                    .roles("USER")
-    //                    .build();
-//
-    //    return new InMemoryUserDetailsManager(user);
-    //}
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
